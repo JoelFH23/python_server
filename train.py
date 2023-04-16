@@ -4,12 +4,12 @@ from sklearn.metrics import accuracy_score
 import pandas as pd
 import pickle
 
-def train_model():
+def train_model() -> None:
     try:
-        feature_names = ["Glucose","BloodPressure","SkinThickness","Insulin"]
-        target_variable = 'Outcome'
+        feature_names = ["age","high_blood_pressure","sex","smoking"]
+        target_variable = 'DEATH_EVENT'
         
-        dataframe = pd.read_csv('datasets/diabetes.csv')
+        dataframe = pd.read_csv('datasets/heart_failure.csv')
         
         X = dataframe[feature_names].values
         y = dataframe[target_variable].values
@@ -26,8 +26,10 @@ def train_model():
         accuracy = accuracy_score(y_test, y_pred)
         print("Accuracy: {:.2f}%".format(accuracy * 100))
         
-        with open("logistic_regression.pickle", "wb") as f:
+        with open("logistic_regression.pkl", "wb") as f:
             pickle.dump(logistic_regression, f)
     
     except Exception as ex:
         print(ex)
+
+train_model()

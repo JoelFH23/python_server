@@ -29,7 +29,7 @@ def predict():
             if not all(isinstance(value, int) and value >= 0 for value in data.values()):
                 raise TypeError("The dictionary values must be non-negative integers")
             
-            specific_keys = ["Glucose","BloodPressure","SkinThickness","Insulin"]
+            specific_keys = ["age","high_blood_pressure","sex","smoking"]
             if not all(key in data for key in specific_keys):
                 raise ValueError("The dictionary does not contain all the specific keys")
             
