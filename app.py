@@ -13,7 +13,7 @@ def predict():
     content_type = request.headers.get('Content-Type')
     if (content_type == 'application/json'):
         try:
-            with open('logistic_regression.pkl', 'rb') as f:
+            with open('random_forest_clf.pkl', 'rb') as f:
                 random_forest = pickle.load(f)
             
             data = request.json
@@ -29,7 +29,7 @@ def predict():
             if not all(isinstance(value, int) and value >= 0 for value in data.values()):
                 raise TypeError("The dictionary values must be non-negative integers")
             
-            specific_keys = ["age","anaemia","diabetes","high_blood_pressure","sex","smoking"]
+            specific_keys = ["age","diabetes","high_blood_pressure","sex","smoking"]
             if not all(key in data for key in specific_keys):
                 raise ValueError("The dictionary does not contain all the specific keys")
             

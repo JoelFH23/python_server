@@ -6,7 +6,7 @@ import pickle
 
 def train_model() -> None:
     try:
-        feature_names = ["age","anaemia","diabetes","high_blood_pressure","sex","smoking"]
+        feature_names = ["age","diabetes","high_blood_pressure","sex","smoking"]
         target_variable = 'DEATH_EVENT'
         
         dataframe = pd.read_csv('datasets/heart_failure.csv')
@@ -17,7 +17,7 @@ def train_model() -> None:
         test_size=0.2
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size)
         
-        model = RandomForestClassifier()
+        model = RandomForestClassifier(max_features=0.5, max_depth=15, random_state=0)
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
         
