@@ -1,5 +1,5 @@
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import pandas as pd
 import pickle
@@ -17,7 +17,7 @@ def train_model() -> None:
         test_size=0.2
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size)
         
-        model = LogisticRegression()
+        model = RandomForestClassifier()
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
         
@@ -29,7 +29,7 @@ def train_model() -> None:
         y_pr = random_forest.predict(new_pred)
         print(f"New predict: {y_pr}") """
        
-        with open('logistic_regression.pkl', "wb") as f:
+        with open('random_forest_clf.pkl', "wb") as f:
             pickle.dump(model, f)
     
     except Exception as ex:
