@@ -13,7 +13,7 @@ def predict():
     content_type = request.headers.get('Content-Type')
     if (content_type == 'application/json'):
         try:
-            with open('random_forest_clf.pkl', 'rb') as f:
+            with open('logistic_regression.pkl', 'rb') as f:
                 random_forest = pickle.load(f)
             
             data = request.json
